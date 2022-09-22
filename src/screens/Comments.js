@@ -6,12 +6,14 @@ import {
   Text,
   TextInput,
   FlatList,
-  TouchableOpacity
+  TouchableOpacity,
+  ScrollView
 } from "react-native";
 import Ionicons from "react-native-vector-icons/Ionicons";
 import axios from "axios";
 import TokenContext from "../context/AuthContext";
 import UserContext from "../context/UserContext";
+
 
 const Comments = (props) => {
   const IP = "10.152.2.101";
@@ -90,6 +92,7 @@ const Comments = (props) => {
         {comments.length === 0 ? (
           <Text>No hay comentarios</Text>
         ) : (
+
           <FlatList
             data={comments}
             renderItem={({ item }) => (
@@ -102,16 +105,21 @@ const Comments = (props) => {
                   }
                   style={styles.profilePicture}
                 />
+                <View style={{flexDirection: "column"}}>
                 <View style={styles.containerText}>
-                  <Text style={{ fontSize: 20 }}>{item.username}</Text>
-                  <Text style={{ paddingTop: 5, width: "100%" }}>
+                  <Text style={{ fontSize: 16, fontWeight: "bold" }}>{item.username}</Text>
+                  <Text style={{ marginLeft: 6, marginTop: 3 }}>
                     {item.text}
                   </Text>
+      
+                </View>
+                    <Text style={{marginLeft: "5%", fontSize : 12}}>{item.created_at}</Text>
                 </View>
               </View>
             )}
             keyExtractor={(item) => item.Id}
-          />
+            />
+
         )}
         <View style={styles.cuadrado}>
           <View
@@ -157,7 +165,7 @@ const styles = StyleSheet.create({
     backgroundColor: "#fff",
     fontSize: 17,
     width: "80%",
-    height: "50%",
+    height: "57%",
     borderRadius: 20,
     padding: 7,
     margin: 8,
@@ -173,18 +181,16 @@ const styles = StyleSheet.create({
   containerComments: {
     backgroundColor: "#E49C7A",
     padding: 15,
-    borderColor: "#9D2932",
-    borderBottomWidth: 1,
     flexDirection: "row",
   },
   containerText: {
-    flexDirection: "column",
+    flexDirection: "row",
     marginLeft: "5%",
   },
   profilePicture: {
     borderRadius: 100,
     borderColor: "#9D2932",
-    height: 70,
-    width: 70,
+    height: 50,
+    width: 50,
   },
 });

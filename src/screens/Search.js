@@ -93,7 +93,7 @@ export default function Search() {
 const styles = StyleSheet.create({
   cuadrado: {
     justifyContent: "flex-start",
-    marginTop: "10%",
+    marginTop: "5%",
     width: 435,
     zIndex: 2,
     height: 50,

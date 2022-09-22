@@ -8,6 +8,7 @@ import ImgDetail from '../screens/ImgDetail';
 import NewPublication from '../screens/NewPublication'
 import Profile from '../screens/Profile'
 import Navbar from '../navigation/Navbar';
+import Register2 from '../screens/Register2';
 
 const Stack = createNativeStackNavigator();
 
@@ -19,8 +20,10 @@ const MainStack = () => {
                     headerShown: false,
                 }}
                 > 
+
                 <Stack.Screen name='Login' component={LogIn}/>
                 <Stack.Screen name='Register' component={Register}/>
+                <Stack.Screen name='Register2' component={Register2}/>
                 <Stack.Screen name='Navbar' component={Navbar}/>
             </Stack.Navigator> 
     );

@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { StyleSheet, Text, View, Pressable, TouchableOpacity, TextInput, ImageBackground, ScrollView } from "react-native";
 import axios from "axios";
+import Ionicons from "react-native-vector-icons/Ionicons";
 
 
 const Register = ({ navigation }) => {
@@ -57,34 +58,56 @@ const Register = ({ navigation }) => {
     <>
       <ImageBackground source={require('../img/LogIn.png')} resizeMode="cover" style={styles.image} >
         <ScrollView>
+          <View style= {{marginTop: "10%"}}>
           <View style={styles.container}>
-            <TextInput style={styles.input} placeholder="     Username" onChangeText={(value) => setUsername(value)} />
-            <TextInput style={styles.input} placeholder="     Password" secureTextEntry={true} onChangeText={(value) => setPassword(value)} />
+            <TextInput style={styles.input} placeholder="Username" onChangeText={(value) => setUsername(value)} />
+            <TextInput style={styles.input} placeholder="Password" secureTextEntry={true} onChangeText={(value) => setPassword(value)} />
 
-            <View style={{ flexDirection: "row", justifyContent: "space-between" }}>
-              <TextInput style={styles.input2} placeholder="     Name" onChangeText={(value) => setName(value)} />
-              <TextInput style={styles.input2} placeholder="     Lastname" onChangeText={(value) => setLastname(value)} />
+
+              <View style= {{flexDirection: "row"}}>
+
+              <TextInput style={styles.input2} placeholder="Name" onChangeText={(value) => setName(value)} />
+              <TextInput style={styles.input2} placeholder="Lastname" onChangeText={(value) => setLastname(value)} />
+
             </View>
-            <View>
+
+         
+            {/* <View>
               <TextInput style={styles.input} placeholder="     Cellphone" keyboardType="phone-pad" onChangeText={(value) => setCellphone(value)} />
               <TextInput style={styles.input} placeholder="     Mail" keyboardType="email-address" onChangeText={(value) => setmail(value)} />
               <TextInput style={styles.input} placeholder="     Description" onChangeText={(value) => setDescription(value)} />
               <TextInput style={styles.input} placeholder="     Premium" onChangeText={(value) => setPremium(value)} />
               <TextInput style={styles.input} placeholder="     Occupation" onChangeText={(value) => setOccupation(value)} />
-            </View>
-            <Pressable
+            </View> */}
+
+                     
+           <TouchableOpacity>
+            <Pressable 
+            style= {styles.button}
+            
+            onPress={() => navigation.navigate('Register2')}
+            >
+                <Ionicons name="arrow-forward" color="#733A26" size={30} style={{ padding: 5, paddingRight: 15 }} />
+            </Pressable>
+            </TouchableOpacity>              
+
+
+            {/* <Pressable
               style={styles.button} title="Log in" borderRadius={30}
               onPress={handleRegister}
             >
               <Text style={{ color: '#733A26', fontWeight: 'bold' }}>Sign up</Text>
-            </Pressable>
+            </Pressable> */}
+
+
 
             <TouchableOpacity
               onPress={() => navigation.navigate('Login')}
             >
-              <Text style={styles.texto}>I have an account</Text>
+              <Text style={styles.texto}> I have an account </Text>
             </TouchableOpacity>
 
+          </View>
           </View>
         </ScrollView>
       </ImageBackground>
@@ -99,6 +122,8 @@ const styles = StyleSheet.create({
     backgroundImage: "#000000",
     alignItems: "center",
     justifyContent: "center",
+    display: "flex",
+    marginTop: 150
   },
   input: {
     backgroundColor: "#F4F3F1",
@@ -106,15 +131,18 @@ const styles = StyleSheet.create({
     borderRadius: 14,
     height: 60,
     width: 300,
-    marginLeft: 120,
-    marginTop: "5%"
+    marginLeft: 115,
+    marginTop: "5%",
+    padding: 10
   },
   input2: {
     backgroundColor: "#F4F3F1",
     borderRadius: 14,
     height: 60,
     width: 150,
-    marginTop: "5%"
+    marginTop: "5%",
+    marginLeft: 10,
+    padding: 10
   },
   button: {
 
@@ -141,7 +169,11 @@ const styles = StyleSheet.create({
     marginTop: "3%",
     color: "#FFF",
     fontSize: 20,
-    fontWeight: "bold"
+  borderColor: "#fff",
+  borderWidth: 1,
+  borderRadius: 7,
+  padding :2,
+  marginTop: "13%"
   }
 
 });

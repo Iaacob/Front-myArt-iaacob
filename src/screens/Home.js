@@ -456,7 +456,7 @@ const styles = StyleSheet.create({
   cuadrado: {
     justifyContent: "space-between",
     flexDirection: "row",
-    marginTop: "10%",
+    marginTop: "5%",
     width: 435,
     zIndex: 2,
     height: 60,

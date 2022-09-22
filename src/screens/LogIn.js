@@ -45,12 +45,12 @@ const LogIn = ({ navigation }) => {
     <ImageBackground source={require('../img/LogIn.png')} resizeMode="cover" style={styles.image} >
       <View style={styles.container}>
         <View style={{ paddingBottom: "4%" }}>
-          <TextInput style={styles.input} placeholder="     User"
+          <TextInput style={styles.input} placeholder="User"
             onChangeText={(value) => setUsername(value)}
           />
         </View>
         <View style={{ paddingBottom: 25 }}>
-          <TextInput style={styles.input} placeholder="     Password" secureTextEntry={true}
+          <TextInput style={styles.input} placeholder="Password" secureTextEntry={true}
             onChangeText={(value) => setContraseña(value)}
           />
         </View>
@@ -98,6 +98,7 @@ const styles = StyleSheet.create({
     height: 60,
     width: 300,
     marginLeft: 120,
+    padding: 10
   },
   button: {
     alignItems: 'center',
