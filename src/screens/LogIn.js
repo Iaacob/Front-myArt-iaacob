@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useContext } from "react";
-import { StyleSheet, Text, View, Pressable, TextInput, ImageBackground, ScrollView, TouchableOpacity } from "react-native";
+import { StyleSheet, Text, View, Pressable, TextInput, ImageBackground, ScrollView, TouchableOpacity, StatusBar } from "react-native";
 import axios from "axios";
 import Ionicons from "react-native-vector-icons/Ionicons";
 import TokenContext from "../context/AuthContext";
@@ -8,7 +8,7 @@ import UserContext from "../context/UserContext";
 
 const LogIn = ({ navigation }) => {
   
-  const IP = "10.152.2.101";
+  const IP = "192.168.0.56";
   const { user, setUser } = useContext(UserContext);
   const { token, setToken } = useContext(TokenContext)
   const [username, setUsername] = useState('');
@@ -42,12 +42,19 @@ const LogIn = ({ navigation }) => {
   }
 
   return (
+    
     <ImageBackground source={require('../img/LogIn.png')} resizeMode="cover" style={styles.image} >
       <View style={styles.container}>
         <View style={{ paddingBottom: "4%" }}>
           <TextInput style={styles.input} placeholder="User"
             onChangeText={(value) => setUsername(value)}
           />
+            <StatusBar
+        barStyle="light-content"
+        hidden={false}
+        backgroundColor="#D0997B"
+        translucent={true}
+      />
         </View>
         <View style={{ paddingBottom: 25 }}>
           <TextInput style={styles.input} placeholder="Password" secureTextEntry={true}
@@ -93,7 +100,7 @@ const styles = StyleSheet.create({
   },
   input: {
     backgroundColor: "#F4F3F1",
-    marginRight: 110,
+    marginRight: 130,
     borderRadius: 14,
     height: 60,
     width: 300,
@@ -113,8 +120,8 @@ const styles = StyleSheet.create({
     marginBottom: "2%"
 
   }, image: {
-    height: '100%',
-    width: '100%',
+    height: '105%',
+    width: '105%',
     flex: 1,
     justifyContent: "center"
   },

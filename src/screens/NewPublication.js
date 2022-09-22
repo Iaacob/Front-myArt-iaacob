@@ -21,7 +21,7 @@ import * as ImageManipulator from "expo-image-manipulator";
 import { useNavigation } from "@react-navigation/native";
 
 const NewPublication = (props) => {
-  const IP = "10.152.2.101";
+  const IP = "192.168.0.56";
   const [name, setName] = useState([]);
   // const [url, setUrl] = useState([]);
   const [description, setDescription] = useState([]);
@@ -143,10 +143,10 @@ const NewPublication = (props) => {
         />
       </View>
       <View style={styles.container}>
-        <ScrollView>
+
           <Image
             style={styles.picturee}
-            source={image ? { uri: `${image}` } : require("../img/User.png")}
+            source={image ? { uri: `${image}` } : require("../img/fondo2.png")}
           />
           <View style={styles.linea}>
             <Text style={{ marginLeft: 10, color: "#fff" }}>
@@ -154,7 +154,6 @@ const NewPublication = (props) => {
             </Text>
             <View style={{ flexDirection: "column-reverse" }}></View>
           </View>
-        </ScrollView>
       </View>
       <View style={styles.inputContainer}>
         <TextInput

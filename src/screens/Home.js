@@ -11,6 +11,7 @@ import {
   TouchableOpacity,
   FlatList,
   RefreshControl,
+  Touchable
 } from "react-native";
 import axios from "axios";
 import Ionicons from "react-native-vector-icons/Ionicons";
@@ -19,7 +20,7 @@ import UserContext from "../context/UserContext";
 import { useNavigation } from "@react-navigation/native";
 
 const Home = () => {
-  const IP = "10.152.2.101";
+  const IP = "192.168.0.56";
   const { token } = useContext(TokenContext);
   const { user } = useContext(UserContext);
   const [likesFromUser, setLikesFromUser] = useState([]);
@@ -224,12 +225,8 @@ const Home = () => {
         translucent={true}
       />
       <View style={styles.cuadrado}>
-        <Ionicons
-          name="ellipsis-vertical"
-          color="#fff"
-          size={35}
-          style={{ padding: "2%" }}
-        />
+      <Image source={require('../img/logo.png')} style={{width: 130, height: 35, marginLeft:10, marginTop: 10}} />
+
         <View style={{ flexDirection: "row" }}>
           <Ionicons
             name="funnel"
@@ -241,7 +238,7 @@ const Home = () => {
             name="notifications"
             color="#fff"
             size={35}
-            style={{ padding: "2%", paddingRight: "10%" }}
+            style={{ padding: "2%", paddingRight: "5%" }}
           />
         </View>
       </View>
@@ -456,7 +453,7 @@ const styles = StyleSheet.create({
   cuadrado: {
     justifyContent: "space-between",
     flexDirection: "row",
-    marginTop: "5%",
+    marginTop: "10%",
     width: 435,
     zIndex: 2,
     height: 60,

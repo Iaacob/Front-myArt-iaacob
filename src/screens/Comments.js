@@ -7,7 +7,8 @@ import {
   TextInput,
   FlatList,
   TouchableOpacity,
-  ScrollView
+  ScrollView,
+  StatusBar,
 } from "react-native";
 import Ionicons from "react-native-vector-icons/Ionicons";
 import axios from "axios";
@@ -16,7 +17,7 @@ import UserContext from "../context/UserContext";
 
 
 const Comments = (props) => {
-  const IP = "10.152.2.101";
+  const IP = "192.168.0.56";
   const { navigation, route } = props;
   const { Id } = route.params;
   const { token } = useContext(TokenContext);
@@ -88,6 +89,12 @@ const Comments = (props) => {
 
   return (
     <>
+    <StatusBar
+        barStyle="light-content"
+        hidden={false}
+        backgroundColor="#9D2932"
+        translucent={true}
+      />
       <View style={styles.container}>
         {comments.length === 0 ? (
           <Text>No hay comentarios</Text>

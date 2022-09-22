@@ -1,15 +1,21 @@
 import React from "react";
-import { StyleSheet, View, Image} from "react-native";
+import { StyleSheet, View, Image, StatusBar} from "react-native";
 import Ionicons from "react-native-vector-icons/Ionicons";
 import ReactNativeZoomableView from '@dudigital/react-native-zoomable-view/src/ReactNativeZoomableView';
 
 const ImgDetail = foto => {
   
-  const IP = "10.152.2.101"; 
+  const IP = "192.168.0.56"; 
   console.log('foto: ',foto)
 
     return (
       <>
+      <StatusBar
+        barStyle="light-content"
+        hidden={false}
+        backgroundColor="#6e0a03"
+        translucent={true}
+      />
         <View style={{backgroundColor: "#6e0a03" }}>
         </View>
         <View style={styles.container}>
@@ -25,7 +31,7 @@ const ImgDetail = foto => {
         <Image style={styles.img} source={{uri: `${foto.route.params.foto}`}}/>
         {/* <Image source={{uri:`${usuario.profilePicture}`}}/> */}
         </ReactNativeZoomableView>
-        <View style={{flexDirection:"row", marginLeft: "60%"}}>
+        <View style={{flexDirection:"row", marginLeft: "60%", marginBottom: 20}}>
         
           <Ionicons name="heart" color="#fff" size={50}/>
           <Ionicons name="heart-dislike" color="#fff" size={50} style={{marginLeft:"10%"}}/>
@@ -45,7 +51,7 @@ const ImgDetail = foto => {
       justifyContent: "center",
     },
     img:{
-        width: 500,
-        height: "100%"
+        width: 550,
+        height: 800
     }
   });

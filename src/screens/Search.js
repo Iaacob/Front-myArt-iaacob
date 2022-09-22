@@ -21,10 +21,10 @@ import { useNavigation } from "@react-navigation/native";
 import GridImageView from "react-native-grid-image-viewer";
 
 export default function Search() {
+  const IP = "192.168.0.56";
   const [name, setName] = useState("");
   const [results, setResults] = useState([]);
   const { token } = useContext(TokenContext);
-  const IP = "10.152.2.101";
 
   useEffect(() => {
     if (name !== "") {
@@ -62,7 +62,7 @@ export default function Search() {
           />
           <TextInput
             style={styles.input}
-            placeholder="  What're you looking for?"
+            placeholder="What're you looking for?"
             onChangeText={(value) => {
               setName(value);
             }}
@@ -93,7 +93,7 @@ export default function Search() {
 const styles = StyleSheet.create({
   cuadrado: {
     justifyContent: "flex-start",
-    marginTop: "5%",
+    marginTop: "10%",
     width: 435,
     zIndex: 2,
     height: 50,
@@ -111,6 +111,7 @@ const styles = StyleSheet.create({
     width: "75%",
     height: 25,
     marginTop: "2.5%",
+    paddingLeft: 10
   },
   app: {
     backgroundColor: "#E49C7A",

@@ -20,7 +20,7 @@ import GridImageView from "react-native-grid-image-viewer";
 import PublicationInProfile from "../components/PublicationInProfile";
 
 const Profile = ({ navigation }) => {
-  const IP = "10.152.2.101";
+  const IP = "192.168.0.56";
   const { user } = useContext(UserContext);
   const { token } = useContext(TokenContext);
   const [data, setData] = useState([]);
@@ -95,6 +95,7 @@ const Profile = ({ navigation }) => {
 
   return (
     <>
+
       <View style={styles.cuadrado}>
         <TouchableOpacity onPress={() => navigation.navigate("Home")}>
           <Ionicons
@@ -102,25 +103,27 @@ const Profile = ({ navigation }) => {
             color="#fff"
             size={35}
             style={{ padding: 7 }}
-          />
+            />
         </TouchableOpacity>
         <View style={{ flexDirection: "row" }}>
           <TouchableOpacity
             onPress={() => navigation.navigate("NewPublication")}
-          >
+            >
             <Ionicons
               name="add"
               color="#fff"
               size={35}
-              style={{ padding: 7, paddingRight: "10%", marginTop: 5 }}
-            />
+              style={{paddingLeft:6, marginRight:20, marginTop: 5, borderColor: "#fff", borderWidth: 2, borderRadius: 10 }}
+              />
           </TouchableOpacity>
         </View>
       </View>
+
+      <ScrollView>
       <View style={styles.container}>
         <View style={{ flexDirection: "row" }}>
+           {/* <Ionicons name="create" color="#fff" size={35} /> */}
           <Text style={styles.user}>{data.username}</Text>
-          <Ionicons name="create" color="#fff" size={35} />
         </View>
         <Image
           source={
@@ -129,15 +132,16 @@ const Profile = ({ navigation }) => {
               : require("../img/User.png")
           }
           style={styles.image}
-        />
+          />
+
         <Text style={styles.occupation}>{data.occupation}</Text>
         <View
           style={{ flexDirection: "row", textAlign: "center", marginTop: "5%" }}
-        >
+          >
           <View style={{ alignItems: "center", marginRight: "6%" }}>
             <Text style={styles.numbers}>300</Text>
             <Text style={styles.numbers2}>Members</Text>
-          </View>
+                    </View>
           <View style={{ alignItems: "center" }}>
             <Text style={styles.numbers}>300</Text>
             <Text style={styles.numbers2}>Followers</Text>
@@ -186,6 +190,7 @@ const Profile = ({ navigation }) => {
           />
         }
       </View>
+      </ScrollView>
     </>
   );
 };
@@ -198,14 +203,15 @@ const styles = StyleSheet.create({
     justifyContent: "center",
   },
   image: {
-    width: "50%",
-    height: "32%",
+    width: "59%",
+    height: 260,
     borderRadius: 500,
+    marginTop: 20
   },
   cuadrado: {
     justifyContent: "space-between",
     flexDirection: "row",
-    marginTop: "5%",
+    marginTop: "10%",
     width: 435,
     zIndex: 2,
     height: 60,
@@ -217,7 +223,7 @@ const styles = StyleSheet.create({
     fontSize: 24,
     fontWeight: "bold",
     color: "#5C2211",
-    marginTop: 450,
+    marginTop: 740,
   },
   occupation: {
     color: "white",

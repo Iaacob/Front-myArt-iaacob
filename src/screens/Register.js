@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from "react";
-import { StyleSheet, Text, View, Pressable, TouchableOpacity, TextInput, ImageBackground, ScrollView } from "react-native";
+import { StyleSheet, StatusBar,Text, View, Pressable, TouchableOpacity, TextInput, ImageBackground, ScrollView } from "react-native";
 import axios from "axios";
 import Ionicons from "react-native-vector-icons/Ionicons";
 
 
 const Register = ({ navigation }) => {
   
-  const IP = "10.152.2.101";
+  const IP = "192.168.0.56";
   const [username, setUsername] = useState([]);
   const [password, setPassword] = useState([]);
   const [name, setName] = useState([]);
@@ -57,8 +57,14 @@ const Register = ({ navigation }) => {
   return (
     <>
       <ImageBackground source={require('../img/LogIn.png')} resizeMode="cover" style={styles.image} >
+      <StatusBar
+        barStyle="light-content"
+        hidden={false}
+        backgroundColor="#D0997B"
+        translucent={true}
+      />
         <ScrollView>
-          <View style= {{marginTop: "10%"}}>
+          <View style= {{marginTop: "19%"}}>
           <View style={styles.container}>
             <TextInput style={styles.input} placeholder="Username" onChangeText={(value) => setUsername(value)} />
             <TextInput style={styles.input} placeholder="Password" secureTextEntry={true} onChangeText={(value) => setPassword(value)} />
@@ -131,7 +137,7 @@ const styles = StyleSheet.create({
     borderRadius: 14,
     height: 60,
     width: 300,
-    marginLeft: 115,
+    marginLeft: 120,
     marginTop: "5%",
     padding: 10
   },
@@ -155,10 +161,10 @@ const styles = StyleSheet.create({
     backgroundColor: '#F6E2D3',
     height: 60,
     width: 150,
-    marginTop: 20
+    marginTop: 60
   }, image: {
-    height: '100%',
-    width: '100%',
+    height: '105%',
+    width: '105%',
     flex: 1,
     justifyContent: "center"
   },

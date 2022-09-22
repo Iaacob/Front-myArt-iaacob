@@ -15,7 +15,7 @@ import Ionicons from "react-native-vector-icons/Ionicons";
 
 
 const Register2 = ({ navigation }) => {
-  const IP = "10.152.2.101";
+  const IP = "192.168.0.56";
   const [username, setUsername] = useState([]);
   const [password, setPassword] = useState([]);
   const [name, setName] = useState([]);
@@ -186,8 +186,8 @@ const styles = StyleSheet.create({
     marginTop: 20,
   },
   image: {
-    height: "100%",
-    width: "100%",
+    height: "105%",
+    width: "105%",
     flex: 1,
     justifyContent: "center",
   },
