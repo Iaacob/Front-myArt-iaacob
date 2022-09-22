@@ -6,6 +6,7 @@ import {
   Text,
   TextInput,
   FlatList,
+  TouchableOpacity
 } from "react-native";
 import Ionicons from "react-native-vector-icons/Ionicons";
 import axios from "axios";
@@ -13,7 +14,7 @@ import TokenContext from "../context/AuthContext";
 import UserContext from "../context/UserContext";
 
 const Comments = (props) => {
-  const IP = "192.168.0.130";
+  const IP = "10.144.1.15";
   const { navigation, route } = props;
   const { Id } = route.params;
   const { token } = useContext(TokenContext);
@@ -125,13 +126,14 @@ const Comments = (props) => {
               placeholder="Write your comment"
               onChangeText={(value) => setComment(value)}
             />
+            <TouchableOpacity onPress={() => addComment()}>
             <Ionicons
               name="send"
               color="#fff"
               size={35}
               style={{ padding: "2%", marginLeft: "4%" }}
-              onPress={() => addComment()}
             />
+            </TouchableOpacity>
           </View>
         </View>
       </View>

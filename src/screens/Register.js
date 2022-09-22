@@ -5,7 +5,7 @@ import axios from "axios";
 
 const Register = ({ navigation }) => {
   
-  const IP = "192.168.0.130";
+  const IP = "10.144.1.15";
   const [username, setUsername] = useState([]);
   const [password, setPassword] = useState([]);
   const [name, setName] = useState([]);

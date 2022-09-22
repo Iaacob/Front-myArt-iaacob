@@ -5,7 +5,7 @@ import ReactNativeZoomableView from '@dudigital/react-native-zoomable-view/src/R
 
 const ImgDetail = foto => {
   
-  const IP = "192.168.0.130"; 
+  const IP = "10.144.1.15"; 
   console.log('foto: ',foto)
 
     return (

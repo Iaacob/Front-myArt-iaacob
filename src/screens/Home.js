@@ -19,7 +19,7 @@ import UserContext from "../context/UserContext";
 import { useNavigation } from "@react-navigation/native";
 
 const Home = () => {
-  const IP = "192.168.0.130";
+  const IP = "10.144.1.15";
   const { token } = useContext(TokenContext);
   const { user } = useContext(UserContext);
   const [likesFromUser, setLikesFromUser] = useState([]);

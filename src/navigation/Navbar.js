@@ -12,9 +12,9 @@ import Register from '../screens/Register';
 import PictureStack from "../stack/PictureStack";
 import PublicationStack from "../stack/PublicationStack"
 import Search from "../screens/Search";
-const Tab = createBottomTabNavigator();
 
 const Navbar = () => {
+  const Tab = createBottomTabNavigator();
 
   return (
 

@@ -15,8 +15,8 @@ const CommentStack = () => {
                     headerShown: false,
                 }}
                 > 
-                <Stack.Screen name='Comments' component={Comments}/>
                 <Stack.Screen name='Home' component={Home}/>
+                <Stack.Screen name='Comments' component={Comments}/>
             </Stack.Navigator> 
     );
 }

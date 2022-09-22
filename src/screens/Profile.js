@@ -4,23 +4,38 @@ import axios from "axios";
 import Ionicons from "react-native-vector-icons/Ionicons";
 import UserContext from "../context/UserContext";
 import TokenContext from "../context/AuthContext";
+import GridImageView from 'react-native-grid-image-viewer';
+
 import PublicationInProfile from "../components/PublicationInProfile";
 
 const Profile = ({ navigation }) => {
 
-  const IP = '192.168.0.130';
+  const IP = '10.144.1.15';
   const { user } = useContext(UserContext);
   const { token } = useContext(TokenContext)
   const [data, setData] = useState([]);
   const [dataPublication, setDataPublication] = useState([]);
   const [refreshing, setRefreshing] = useState(false);
+  const [url, setUrl] = useState([]);
+
 
   useEffect(() => {
     getDataUser(user);
     if (data !== null) {
       getDataPublication(user);
     }
-  }, [user]);
+      getUrl();   
+  }, []);
+
+  const getUrl = () => {
+    const url = []
+    dataPublication.map((item) => {
+      url.push(item.image);
+    })
+    setUrl(url);
+  }
+
+  console.log('estas son las url: ', url)
 
   const getDataUser = async (user) => {
     const res = await axios.post
@@ -91,22 +106,25 @@ const Profile = ({ navigation }) => {
         <Image source={data.profilePicture ? { uri: data.profilePicture } : require('../img/User.png')} style={styles.image} />
         <Text style={styles.occupation}>{data.occupation}</Text>
         <View style={{ flexDirection: "row", textAlign: "center", marginTop: "5%" }}>
-          <View style={{alignItems: "center", marginRight: "6%"}}>
+          <View style={{ alignItems: "center", marginRight: "6%" }}>
             <Text style={styles.numbers}>300</Text>
             <Text style={styles.numbers2}>Followers</Text>
           </View>
-          <View style={{alignItems: "center"}}>
+          <View style={{ alignItems: "center" }}>
             <Text style={styles.numbers}>300</Text>
             <Text style={styles.numbers2}>Followers</Text>
           </View>
-          <View style={{alignItems: "center", marginLeft: "6%"}}>
+          <View style={{ alignItems: "center", marginLeft: "6%" }}>
             <Text style={styles.numbers}>300</Text>
             <Text style={styles.numbers2}>Followers</Text>
           </View>
-          </View>
+        </View>
         <Ionicons name="grid" color="#160F0A" size={35} style={{ marginTop: "10%" }} />
-        
-          <FlatList
+
+        <View style={{ height: "100%", width: "100%", padding: 5 }}>
+          <GridImageView data={url} />
+        </View>
+        {/* <FlatList
             data={dataPublication}
             numColumns={2}
             key={dataPublication.id}
@@ -120,7 +138,7 @@ const Profile = ({ navigation }) => {
               <PublicationInProfile url={item.image} />
             )}
           />
-        
+         */}
       </View>
     </>
   );
@@ -136,7 +154,8 @@ const styles = StyleSheet.create({
   image: {
     width: "45%",
     height: "25%",
-    borderRadius: 200
+    borderRadius: 200,
+    marginTop: 330
   },
   cuadrado: {
     justifyContent: "space-between",

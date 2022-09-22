@@ -17,7 +17,7 @@ const PictureStack = () => {
                 > 
                 <Stack.Screen name='Profile' component={Profile} options={{headerShown: false}}/>                
                 <Stack.Screen name='NewPublication' component={NewPublication} options={{headerTitle: ""}}/>
-                <Stack.Screen name='Home' component={Home} options={{headerTitle: ""}}/>
+                {/* <Stack.Screen name='Home' component={Home} options={{headerTitle: ""}}/> */}
                 <Stack.Screen name='Search' component={Search} options={{headerTitle: ""}}/>
             </Stack.Navigator> 
     );
