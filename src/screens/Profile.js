@@ -1,4 +1,10 @@
-import React, { useState, useEffect, useContext, useDebugValue } from "react";
+import React, {
+  useState,
+  useEffect,
+  useContext,
+  useDebugValue,
+  useCallback,
+} from "react";
 import {
   StyleSheet,
   Text,
@@ -18,7 +24,7 @@ import TokenContext from "../context/AuthContext";
 import GridImageView from "react-native-grid-image-viewer";
 
 const Profile = ({ navigation }) => {
-  const IP = "192.168.0.130";
+  const IP = "192.168.157.241";
   const { user } = useContext(UserContext);
   const { token } = useContext(TokenContext);
   const [data, setData] = useState([]);
@@ -29,9 +35,9 @@ const Profile = ({ navigation }) => {
   useEffect(() => {
     getDataUser();
     getDataPublication();
-    if (dataPublication.length > 0) {
-      getUrl();
-    }
+    // if (dataPublication.length >= 0) {
+    //   getUrl();
+    // }
   }, []);
 
   // useEffect(()=>{
@@ -40,7 +46,7 @@ const Profile = ({ navigation }) => {
 
   const getUrl = () => {
     const url = [];
-    console.log('publicaciones dentro de gerUrl: ',dataPublication)
+    console.log("publicaciones dentro de gerUrl: ", dataPublication);
     dataPublication.map((item) => {
       url.push(item.image);
     });
@@ -74,28 +80,26 @@ const Profile = ({ navigation }) => {
           authorization: `Bearer ${token}`,
         },
       })
-      .then(
-        (response) => {
-          console.log("esta es la respuesta", response.data);
-          setDataPublication(response.data);
-        },
-        (error) => {
-          console.log(error);
-        }
-      );
+      .then((response) => {
+        console.log("esta es la respuesta", response.data);
+        setDataPublication(response.data);
+      })
+      .then(() => {
+        getUrl();
+      })
+      .catch((error) => {
+        console.log(error);
+      });
   };
 
-  const onRefresh = async () => {
+  const onRefresh = () => {
     setRefreshing(true);
-    getDataUser();
     getDataPublication();
-    getUrl();
     setRefreshing(false);
   };
 
   return (
     <>
-
       <View style={styles.cuadrado}>
         <TouchableOpacity onPress={() => navigation.navigate("Home")}>
           <Ionicons
@@ -103,78 +107,85 @@ const Profile = ({ navigation }) => {
             color="#fff"
             size={35}
             style={{ padding: 7 }}
-            />
+          />
         </TouchableOpacity>
         <View style={{ flexDirection: "row" }}>
           <TouchableOpacity
             onPress={() => navigation.navigate("NewPublication")}
-            >
+          >
             <Ionicons
               name="add"
               color="#fff"
               size={35}
-              style={{paddingLeft:6, marginRight:20, marginTop: 5, borderColor: "#fff", borderWidth: 2, borderRadius: 10 }}
-              />
+              style={{
+                paddingLeft: 6,
+                marginRight: 20,
+                marginTop: 5,
+                borderColor: "#fff",
+                borderWidth: 2,
+                borderRadius: 10,
+              }}
+            />
           </TouchableOpacity>
         </View>
       </View>
-
-
       <ScrollView
-      refreshControl={
-        <RefreshControl refreshing={refreshing} onRefresh={()=>onRefresh} />
-      }
-      >
-      <View style={styles.container}>
-
-        <View style={{ flexDirection: "row" }}>
-          <Text style={styles.user}>{data.username}</Text>
-        </View>
-        <Image
-          source={
-            data.profilePicture
-              ? { uri: data.profilePicture }
-              : require("../img/User.png")
-          }
-          style={styles.image}
+        refreshControl={
+          <RefreshControl
+            refreshing={refreshing}
+            onRefresh={() => onRefresh()}
           />
-        <Text style={styles.occupation}>{data.occupation}</Text>
-        <View
-          style={{ flexDirection: "row", textAlign: "center", marginTop: "5%" }}
+        }
+      >
+        <View style={styles.container}>
+          <View style={{ flexDirection: "row" }}>
+            <Text style={styles.user}>{data.username}</Text>
+          </View>
+          <Image
+            source={
+              data.profilePicture
+                ? { uri: data.profilePicture }
+                : require("../img/User.png")
+            }
+            style={styles.image}
+          />
+          <Text style={styles.occupation}>{data.occupation}</Text>
+          <View
+            style={{
+              flexDirection: "row",
+              textAlign: "center",
+              marginTop: "5%",
+            }}
           >
-          <View style={{ alignItems: "center", marginRight: "6%" }}>
-            <Text style={styles.numbers}>300</Text>
-            <Text style={styles.numbers2}>Members</Text>
-                    </View>
-          <View style={{ alignItems: "center" }}>
-            <Text style={styles.numbers}>300</Text>
-            <Text style={styles.numbers2}>Followers</Text>
+            <View style={{ alignItems: "center", marginRight: "6%" }}>
+              <Text style={styles.numbers}>300</Text>
+              <Text style={styles.numbers2}>Members</Text>
+            </View>
+            <View style={{ alignItems: "center" }}>
+              <Text style={styles.numbers}>300</Text>
+              <Text style={styles.numbers2}>Followers</Text>
+            </View>
+            <View style={{ alignItems: "center", marginLeft: "6%" }}>
+              <Text style={styles.numbers}>{dataPublication.length}</Text>
+              <Text style={styles.numbers2}>Works</Text>
+            </View>
           </View>
-          <View style={{ alignItems: "center", marginLeft: "6%" }}>
-            <Text style={styles.numbers}>{dataPublication.length}</Text>
-            <Text style={styles.numbers2}>Works</Text>
+          <Ionicons
+            name="grid"
+            color="#160F0A"
+            size={35}
+            style={{ marginTop: "10%" }}
+          />
+          <View style={{ height: "100%", width: "100%", padding: 5 }}>
+            <GridImageView data={url} />
           </View>
-        </View>
-        <Ionicons
-          name="grid"
-          color="#160F0A"
-          size={35}
-          style={{ marginTop: "10%" }}
-        />
-        
-        <View style={{ height: "100%", width: "100%", padding: 5 }}>
-          <GridImageView data={url} />
-        </View>
-        {
           <GridImageView
             data={dataPublication.map((publicacion) => {
               const url = publicacion.image;
               return url;
             })}
           />
-        }
-
-      </View>
+        </View>
       </ScrollView>
     </>
   );
@@ -191,7 +202,7 @@ const styles = StyleSheet.create({
     width: "59%",
     height: 260,
     borderRadius: 500,
-    marginTop: 20
+    marginTop: 20,
   },
   cuadrado: {
     justifyContent: "space-between",
