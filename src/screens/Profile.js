@@ -20,7 +20,7 @@ import GridImageView from "react-native-grid-image-viewer";
 import PublicationInProfile from "../components/PublicationInProfile";
 
 const Profile = ({ navigation }) => {
-  const IP = "192.168.0.56";
+  const IP = "192.168.0.130";
   const { user } = useContext(UserContext);
   const { token } = useContext(TokenContext);
   const [data, setData] = useState([]);
@@ -32,7 +32,6 @@ const Profile = ({ navigation }) => {
     getDataUser();
     if (data !== null) {
       getDataPublication(user);
-      // getUrl();
     }
   }, []);
 

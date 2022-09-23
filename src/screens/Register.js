@@ -6,7 +6,7 @@ import Ionicons from "react-native-vector-icons/Ionicons";
 
 const Register = ({ navigation }) => {
   
-  const IP = "192.168.0.56";
+  const IP = "192.168.0.130";
   const [username, setUsername] = useState([]);
   const [password, setPassword] = useState([]);
   const [name, setName] = useState([]);
@@ -69,14 +69,12 @@ const Register = ({ navigation }) => {
             <TextInput style={styles.input} placeholder="Username" onChangeText={(value) => setUsername(value)} />
             <TextInput style={styles.input} placeholder="Password" secureTextEntry={true} onChangeText={(value) => setPassword(value)} />
 
-
               <View style= {{flexDirection: "row"}}>
 
               <TextInput style={styles.input2} placeholder="Name" onChangeText={(value) => setName(value)} />
               <TextInput style={styles.input2} placeholder="Lastname" onChangeText={(value) => setLastname(value)} />
 
             </View>
-
          
             {/* <View>
               <TextInput style={styles.input} placeholder="     Cellphone" keyboardType="phone-pad" onChangeText={(value) => setCellphone(value)} />
@@ -90,8 +88,14 @@ const Register = ({ navigation }) => {
            <TouchableOpacity>
             <Pressable 
             style= {styles.button}
-            
-            onPress={() => navigation.navigate('Register2')}
+            onPress={() => 
+              {
+                if (username.length < 1 || password.length < 1 || name.length < 1 || lastname.length < 1) {
+                  return alert('Fill all the fields before continuing');
+                } else {
+                  navigation.navigate('Register2', {username: username, password: password, name: name, lastname: lastname})
+                }
+              }}
             >
                 <Ionicons name="arrow-forward" color="#733A26" size={30} style={{ padding: 5, paddingRight: 15 }} />
             </Pressable>

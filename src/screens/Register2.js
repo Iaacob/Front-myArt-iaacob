@@ -13,13 +13,14 @@ import {
 import axios from "axios";
 import Ionicons from "react-native-vector-icons/Ionicons";
 
-
-const Register2 = ({ navigation }) => {
-  const IP = "192.168.0.56";
-  const [username, setUsername] = useState([]);
-  const [password, setPassword] = useState([]);
-  const [name, setName] = useState([]);
-  const [lastname, setLastname] = useState([]);
+const Register2 = (props) => {
+  const IP = "192.168.0.130";
+  const { navigation, route } = props;
+  const { username, password, name, lastname } = route.params;
+  // const [username, setUsername] = useState([]);
+  // const [password, setPassword] = useState([]);
+  // const [name, setName] = useState([]);
+  // const [lastname, setLastname] = useState([]);
   const [cellphone, setCellphone] = useState([]);
   const [mail, setmail] = useState([]);
   const [description, setDescription] = useState([]);
@@ -27,23 +28,39 @@ const Register2 = ({ navigation }) => {
   const [occupation, setOccupation] = useState([]);
   const [user, setUser] = useState({});
 
-  const toggleSwitch = () =>
-    setPremium((premium) => !premium);
+  const toggleSwitch = () => setPremium((premium) => !premium);
 
-    console.log("Premium: ", premium)
+  console.log("route", route.params);
 
   const handleRegister = async () => {
-    if (
-      username.length < 1 ||
-      password.length < 1 ||
-      mail.length < 1 ||
-      premium.length < 1
-    ) {
-      return alert(
-        "los campos username, password, mail y premium son obilgatorios, complételos"
-      );
-    } else {
-      console.log("holaaaa");
+    // if (
+    //   username.length < 1 ||
+    //   password.length < 1 ||
+    //   mail.length < 1 ||
+    //   premium.length < 1
+    // ) {
+    //   return alert(
+    //     "los campos username, password, mail y premium son obilgatorios, complételos"
+    //   );
+    // } else {
+    //   console.log("holaaaa");
+    //   const body = {
+    //     username: username,
+    //     password: password,
+    //     name: name,
+    //     lastname: lastname,
+    //     cellphone: cellphone,
+    //     mail: mail,
+    //     description: description,
+    //     premium: premium,
+    //     occupation: occupation,
+    //   };
+    //   setUser(body);
+    //   await register(body);
+    // }
+    if(cellphone === "" || mail === "" || occupation === "" || description === ""){
+      return alert("Fill all the fields before continue")
+    } else{
       const body = {
         username: username,
         password: password,
@@ -55,6 +72,7 @@ const Register2 = ({ navigation }) => {
         premium: premium,
         occupation: occupation,
       };
+      console.log('este es el usuario registrado: ', body)
       setUser(body);
       await register(body);
     }
@@ -89,9 +107,7 @@ const Register2 = ({ navigation }) => {
               <TextInput style={styles.input2} placeholder="     Name" onChangeText={(value) => setName(value)} />
               <TextInput style={styles.input2} placeholder="     Lastname" onChangeText={(value) => setLastname(value)} />
             </View> */}
-            <View style={{marginTop: "30%"}}>
-
-            
+            <View style={{ marginTop: "30%" }}>
               <TextInput
                 style={styles.input}
                 placeholder="Cellphone"
@@ -115,17 +131,35 @@ const Register2 = ({ navigation }) => {
                 onChangeText={(value) => setOccupation(value)}
               />
             </View>
-            <View style={{backgroundColor: "#FBC02D", borderRadius: 10, marginTop: 10, alignItems: "center", padding: 4}}>
-                <Text style={{color: "#fff", fontWeight: "bold"}}>  Wanna try premiun?  </Text>
+            <View
+              style={{
+                backgroundColor: "#FBC02D",
+                borderRadius: 10,
+                marginTop: 10,
+                alignItems: "center",
+                padding: 4,
+              }}
+            >
+              <Text style={{ color: "#fff", fontWeight: "bold" }}>
+                {" "}
+                Wanna try premiun?{" "}
+              </Text>
             </View>
-            <View style= {{backgroundColor: "#fff", borderRadius: 10, marginTop: 10, padding: 2}}>
-            <Switch
-              trackColor={{ false: "#BDBDBD", true: "#BDBDBD" }}
-              thumbColor={premium ?"#FBC02D"  : "#9D2932" }
-              ios_backgroundColor="#fff"
-              onValueChange={toggleSwitch}
-              value={premium}
-            />
+            <View
+              style={{
+                backgroundColor: "#fff",
+                borderRadius: 10,
+                marginTop: 10,
+                padding: 2,
+              }}
+            >
+              <Switch
+                trackColor={{ false: "#BDBDBD", true: "#BDBDBD" }}
+                thumbColor={premium ? "#FBC02D" : "#9D2932"}
+                ios_backgroundColor="#fff"
+                onValueChange={toggleSwitch}
+                value={premium}
+              />
             </View>
             <Pressable
               style={styles.button}
@@ -164,7 +198,7 @@ const styles = StyleSheet.create({
     width: 300,
     marginLeft: 120,
     marginTop: "5%",
-    padding : 10
+    padding: 10,
   },
   input2: {
     backgroundColor: "#F4F3F1",
