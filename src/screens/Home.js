@@ -11,7 +11,7 @@ import {
   TouchableOpacity,
   FlatList,
   RefreshControl,
-  Touchable
+  Touchable,
 } from "react-native";
 import axios from "axios";
 import Ionicons from "react-native-vector-icons/Ionicons";
@@ -225,7 +225,10 @@ const Home = () => {
         translucent={true}
       />
       <View style={styles.cuadrado}>
-      <Image source={require('../img/logo.png')} style={{width: 130, height: 35, marginLeft:10, marginTop: 10}} />
+        <Image
+          source={require("../img/logo.png")}
+          style={{ width: 130, height: 35, marginLeft: 10, marginTop: 10 }}
+        />
 
         <View style={{ flexDirection: "row" }}>
           <Ionicons

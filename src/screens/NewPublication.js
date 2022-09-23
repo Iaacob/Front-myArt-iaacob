@@ -92,7 +92,7 @@ const NewPublication = (props) => {
       });
       const formData = new FormData();
       formData.append("image", manipResult.base64);
-      formData.append("type", "file");
+      formData.append("type", "base64");
       fetch("https://api.imgur.com/3/image", {
         method: "POST",
         headers: {

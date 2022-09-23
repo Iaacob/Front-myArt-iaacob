@@ -17,8 +17,6 @@ import UserContext from "../context/UserContext";
 import TokenContext from "../context/AuthContext";
 import GridImageView from "react-native-grid-image-viewer";
 
-import PublicationInProfile from "../components/PublicationInProfile";
-
 const Profile = ({ navigation }) => {
   const IP = "192.168.0.130";
   const { user } = useContext(UserContext);
@@ -30,14 +28,15 @@ const Profile = ({ navigation }) => {
 
   useEffect(() => {
     getDataUser();
-    if (data !== null) {
-      getDataPublication(user);
+    getDataPublication();
+    if (dataPublication.length > 0) {
+      getUrl();
     }
   }, []);
 
-  useEffect(()=>{
-    getUrl();
-  },[dataPublication])
+  // useEffect(()=>{
+  //   getUrl();
+  // },[dataPublication])
 
   const getUrl = () => {
     const url = [];
@@ -67,7 +66,7 @@ const Profile = ({ navigation }) => {
       );
   };
 
-  const getDataPublication = async (user) => {
+  const getDataPublication = async () => {
     await axios
       .post(`http://${IP}:4000/publicaciones/username`, user, {
         headers: {
@@ -87,8 +86,10 @@ const Profile = ({ navigation }) => {
   };
 
   const onRefresh = async () => {
-    getDataUser(user);
-    getDataPublication(user);
+    setRefreshing(true);
+    getDataUser();
+    getDataPublication();
+    getUrl();
     setRefreshing(false);
   };
 
@@ -118,10 +119,15 @@ const Profile = ({ navigation }) => {
         </View>
       </View>
 
-      <ScrollView>
+
+      <ScrollView
+      refreshControl={
+        <RefreshControl refreshing={refreshing} onRefresh={()=>onRefresh} />
+      }
+      >
       <View style={styles.container}>
+
         <View style={{ flexDirection: "row" }}>
-           {/* <Ionicons name="create" color="#fff" size={35} /> */}
           <Text style={styles.user}>{data.username}</Text>
         </View>
         <Image
@@ -132,7 +138,6 @@ const Profile = ({ navigation }) => {
           }
           style={styles.image}
           />
-
         <Text style={styles.occupation}>{data.occupation}</Text>
         <View
           style={{ flexDirection: "row", textAlign: "center", marginTop: "5%" }}
@@ -156,38 +161,19 @@ const Profile = ({ navigation }) => {
           size={35}
           style={{ marginTop: "10%" }}
         />
-
+        
         <View style={{ height: "100%", width: "100%", padding: 5 }}>
           <GridImageView data={url} />
         </View>
-        {/* <FlatList
-            data={dataPublication}
-            numColumns={2}
-            key={dataPublication.id}
-            contentContainerStyle={styles.contenedorDePublicaciones}
-            refreshing={refreshing}
-            onRefresh={() => {
-              setRefreshing(true);
-              onRefresh();
-            }}
-            renderItem={({ item }) => (
-              <PublicationInProfile url={item.image} />
-            )}
-          />
-         */}
         {
           <GridImageView
             data={dataPublication.map((publicacion) => {
               const url = publicacion.image;
               return url;
             })}
-            refreshing={refreshing}
-            onRefresh={() => {
-              setRefreshing(true);
-              onRefresh();
-            }}
           />
         }
+
       </View>
       </ScrollView>
     </>
