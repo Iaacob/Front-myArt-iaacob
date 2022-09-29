@@ -14,7 +14,7 @@ import axios from "axios";
 import Ionicons from "react-native-vector-icons/Ionicons";
 
 const Register2 = (props) => {
-  const IP = "192.168.157.241";
+  const IP = "10.144.1.15";
   const { navigation, route } = props;
   const { username, password, name, lastname } = route.params;
   // const [username, setUsername] = useState([]);

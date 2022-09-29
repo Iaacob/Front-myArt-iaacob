@@ -6,7 +6,7 @@ import Ionicons from "react-native-vector-icons/Ionicons";
 
 const Register = ({ navigation }) => {
   
-  const IP = "192.168.157.241";
+  const IP = "10.144.1.15";
   const [username, setUsername] = useState([]);
   const [password, setPassword] = useState([]);
   const [name, setName] = useState([]);

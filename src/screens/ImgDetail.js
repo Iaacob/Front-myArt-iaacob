@@ -4,7 +4,7 @@ import Ionicons from "react-native-vector-icons/Ionicons";
 import ReactNativeZoomableView from "@dudigital/react-native-zoomable-view/src/ReactNativeZoomableView";
 
 const ImgDetail = (foto) => {
-  const IP = "192.168.157.241";
+  const IP = "10.144.1.15";
   console.log("foto: ", foto);
 
   return (

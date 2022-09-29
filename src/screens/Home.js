@@ -12,6 +12,7 @@ import {
   FlatList,
   RefreshControl,
   Touchable,
+  Button
 } from "react-native";
 import axios from "axios";
 import Ionicons from "react-native-vector-icons/Ionicons";
@@ -20,7 +21,7 @@ import UserContext from "../context/UserContext";
 import { useNavigation } from "@react-navigation/native";
 
 const Home = () => {
-  const IP = "192.168.157.241";
+  const IP = "10.144.1.15";
   const { token } = useContext(TokenContext);
   const { user } = useContext(UserContext);
   const [likesFromUser, setLikesFromUser] = useState([]);
@@ -208,6 +209,21 @@ const Home = () => {
     await getAllDataFromPublication();
   };
 
+  {/*funcion iaacob */}
+  const deletePublication = async (id) => {
+    console.log("holi estoy en la funcion")
+    await axios.delete(`http://${IP}:4000/publicaciones/${id}` , {
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `bearer ${token}`,
+        "X-Requested-With": "XMLHttpRequest",
+      },
+    });
+    await obtenerLikesDelUser(user);
+    await obtenerDislikesDelUser(user);
+    await getAllDataFromPublication();
+  }
+
   const onRefresh = async () => {
     await obtenerLikesDelUser(user);
     await obtenerDislikesDelUser(user);
@@ -287,6 +303,13 @@ const Home = () => {
                     >
                       {item.occupation}
                     </Text>
+                    {/* boton iaacob */}
+                    <Button
+                      onPress={ async ()=>deletePublication(item.Id)}
+                      title="Delete"
+                      color="#841584"
+                      accessibilityLabel="Learn more about this purple button"
+                    />
                     <Text style={styles.follow}> Following </Text>
                   </View>
                 </View>
