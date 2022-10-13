@@ -24,7 +24,7 @@ import TokenContext from "../context/AuthContext";
 import GridImageView from "react-native-grid-image-viewer";
 
 const Profile = ({ navigation }) => {
-  const IP = "10.152.2.130";
+  const IP = "10.144.1.19";
   const { user } = useContext(UserContext);
   const { token } = useContext(TokenContext);
   const [data, setData] = useState([]);

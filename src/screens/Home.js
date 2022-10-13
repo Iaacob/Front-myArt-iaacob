@@ -21,7 +21,7 @@ import UserContext from "../context/UserContext";
 import { useNavigation } from "@react-navigation/native";
 
 const Home = () => {
-  const IP = "10.152.2.130";
+  const IP = "10.144.1.19";
   const { token } = useContext(TokenContext);
   const { user } = useContext(UserContext);
   const [likesFromUser, setLikesFromUser] = useState([]);
@@ -117,6 +117,7 @@ const Home = () => {
         },
       })
       .then((res) => {
+        console.log('rta publicaciones: ', res.data)
         setallDataPublications(res.data);
       })
       .catch((err) => console.log(err));
@@ -210,18 +211,22 @@ const Home = () => {
   };
 
   {/*eliminar publicacion */ }
-  const deletePublication = async (id) => {
+  const deletePublication = async (id, idPublicacion) => {
+    console.log('hola', id)
+    console.log('hola', logedUser.Id)
+    console.log('hola', user)
+
+
     if (id == logedUser.Id) {
 
       console.log("estoy en el if: ", id, logedUser.Id)
 
-      await axios.delete(`http://${IP}:4000/publicaciones/${id}`, {
+      await axios.delete(`http://${IP}:4000/publicaciones/${idPublicacion}`, {
         headers: {
           "Content-Type": "application/json",
           Authorization: `bearer ${token}`,
           "X-Requested-With": "XMLHttpRequest",
         },
-
       });
       await obtenerLikesDelUser(user);
       await obtenerDislikesDelUser(user);
@@ -312,7 +317,7 @@ const Home = () => {
                       {item.occupation}
                     </Text>
                     <Button
-                      onPress={async () => deletePublication(item.id)}
+                      onPress={async () => deletePublication(item.UserId, item.Id)}
                       title="Delete"
                       color="#841584"
                       accessibilityLabel="Learn more about this purple button"

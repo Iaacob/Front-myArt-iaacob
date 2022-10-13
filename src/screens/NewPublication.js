@@ -21,7 +21,7 @@ import * as ImageManipulator from "expo-image-manipulator";
 import { useNavigation } from "@react-navigation/native";
 
 const NewPublication = (props) => {
-  const IP = "10.152.2.130";
+  const IP = "10.144.1.19";
   const [name, setName] = useState([]);
   // const [url, setUrl] = useState([]);
   const [description, setDescription] = useState([]);
