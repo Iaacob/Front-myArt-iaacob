@@ -21,7 +21,7 @@ import UserContext from "../context/UserContext";
 import { useNavigation } from "@react-navigation/native";
 
 const Home = () => {
-  const IP = "10.144.1.19";
+  const IP = "10.152.2.131";
   const { token } = useContext(TokenContext);
   const { user } = useContext(UserContext);
   const [likesFromUser, setLikesFromUser] = useState([]);
@@ -217,6 +217,7 @@ const Home = () => {
     console.log('hola', user)
 
 
+
     if (id == logedUser.Id) {
 
       console.log("estoy en el if: ", id, logedUser.Id)
@@ -236,14 +237,6 @@ const Home = () => {
       alert("no se puede eliminar")
     }
   }
-
-  const onRefresh = async () => {
-    await obtenerLikesDelUser(user);
-    await obtenerDislikesDelUser(user);
-    await getDataFromLogedUser(user);
-    await getAllDataFromPublication();
-    setRefreshing(false);
-  };
 
   return (
     <>
@@ -316,14 +309,22 @@ const Home = () => {
                     >
                       {item.occupation}
                     </Text>
-                    <Button
-                      onPress={async () => deletePublication(item.UserId, item.Id)}
-                      title="Delete"
-                      color="#841584"
-                      accessibilityLabel="Learn more about this purple button"
-                    />
+                    
+                    {
+                      item.Id == logedUser.Id
+                      &&
+                      <Button
+                        onPress={async () => deletePublication(item.UserId, item.Id)}
+                        title="Delete"
+                        color="#841584"
+                        accessibilityLabel="Learn more about this purple button"
+                      />
+                       
+                    }
+                  
                     <Text style={styles.follow}> Following </Text>
                   </View>
+                  
                 </View>
               </View>
               <TouchableOpacity

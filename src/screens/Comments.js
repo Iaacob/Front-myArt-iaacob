@@ -17,7 +17,7 @@ import UserContext from "../context/UserContext";
 
 
 const Comments = (props) => {
-  const IP = "10.144.1.19";
+  const IP = "10.152.2.131";
   const { navigation, route } = props;
   const { Id } = route.params;
   const { token } = useContext(TokenContext);
