@@ -21,7 +21,7 @@ import UserContext from "../context/UserContext";
 import { useNavigation } from "@react-navigation/native";
 
 const Home = () => {
-  const IP = "10.152.2.131";
+  const IP = "10.144.1.19";
   const { token } = useContext(TokenContext);
   const { user } = useContext(UserContext);
   const [likesFromUser, setLikesFromUser] = useState([]);
@@ -238,6 +238,8 @@ const Home = () => {
     }
   }
 
+  console.log(logedUser.Id)
+
   return (
     <>
       <StatusBar
@@ -267,8 +269,6 @@ const Home = () => {
           />
         </View>
       </View>
-
-      <RefreshControl refreshing={refreshing} onRefresh={onRefresh} />
       <View style={styles.container}>
         <FlatList
           data={allDataPublications}
@@ -309,22 +309,23 @@ const Home = () => {
                     >
                       {item.occupation}
                     </Text>
-                    
-                    {
-                      item.Id == logedUser.Id
-                      &&
-                      <Button
+
+
+                      {
+                        parseInt(item.UserId) == parseInt(logedUser.Id) ? <Button
                         onPress={async () => deletePublication(item.UserId, item.Id)}
                         title="Delete"
                         color="#841584"
                         accessibilityLabel="Learn more about this purple button"
-                      />
-                       
-                    }
-                  
-                    <Text style={styles.follow}> Following </Text>
+                      /> : <Text>{logedUser.Id} y {item.UserId}</Text>
+                      }
+                    
+
+
+
+                    {/* <Text style={styles.follow}> Following </Text> */}
                   </View>
-                  
+
                 </View>
               </View>
               <TouchableOpacity
