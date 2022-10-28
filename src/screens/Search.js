@@ -19,9 +19,10 @@ import TokenContext from "../context/AuthContext";
 import UserContext from "../context/UserContext";
 import { useNavigation } from "@react-navigation/native";
 import GridImageView from "react-native-grid-image-viewer";
+import IP from "../ip";
+
 
 export default function Search() {
-  const IP = "10.144.1.19";
   const [name, setName] = useState("");
   const [results, setResults] = useState([]);
   const { token } = useContext(TokenContext);

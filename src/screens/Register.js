@@ -2,11 +2,11 @@ import React, { useState, useEffect } from "react";
 import { StyleSheet, StatusBar,Text, View, Pressable, TouchableOpacity, TextInput, ImageBackground, ScrollView } from "react-native";
 import axios from "axios";
 import Ionicons from "react-native-vector-icons/Ionicons";
+import IP from "../ip";
 
 
 const Register = ({ navigation }) => {
   
-  const IP = "10.144.1.19";
   const [username, setUsername] = useState([]);
   const [password, setPassword] = useState([]);
   const [name, setName] = useState([]);

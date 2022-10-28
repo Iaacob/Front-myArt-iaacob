@@ -4,11 +4,11 @@ import axios from "axios";
 import Ionicons from "react-native-vector-icons/Ionicons";
 import TokenContext from "../context/AuthContext";
 import UserContext from "../context/UserContext";
+import IP from "../ip";
 
 
 const LogIn = ({ navigation }) => {
   
-  const IP = "10.144.1.19";
   const { user, setUser } = useContext(UserContext);
   const { token, setToken } = useContext(TokenContext)
   const [username, setUsername] = useState('');

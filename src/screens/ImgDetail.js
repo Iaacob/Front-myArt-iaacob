@@ -2,9 +2,9 @@ import React from "react";
 import { StyleSheet, View, Image, StatusBar } from "react-native";
 import Ionicons from "react-native-vector-icons/Ionicons";
 import ReactNativeZoomableView from "@dudigital/react-native-zoomable-view/src/ReactNativeZoomableView";
+import IP from "../ip";
 
 const ImgDetail = (foto) => {
-  const IP = "10.144.1.19";
   console.log("foto: ", foto);
 
   return (

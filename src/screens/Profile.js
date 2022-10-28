@@ -22,9 +22,10 @@ import Ionicons from "react-native-vector-icons/Ionicons";
 import UserContext from "../context/UserContext";
 import TokenContext from "../context/AuthContext";
 import GridImageView from "react-native-grid-image-viewer";
+import IP from "../ip";
+
 
 const Profile = ({ navigation }) => {
-  const IP = "10.144.1.19";
   const { user } = useContext(UserContext);
   const { token } = useContext(TokenContext);
   const [data, setData] = useState([]);

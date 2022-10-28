@@ -12,16 +12,18 @@ import {
   FlatList,
   RefreshControl,
   Touchable,
-  Button
+  Button,
+
 } from "react-native";
 import axios from "axios";
 import Ionicons from "react-native-vector-icons/Ionicons";
 import TokenContext from "../context/AuthContext";
 import UserContext from "../context/UserContext";
 import { useNavigation } from "@react-navigation/native";
+import IP from "../ip";
+
 
 const Home = () => {
-  const IP = "10.144.1.19";
   const { token } = useContext(TokenContext);
   const { user } = useContext(UserContext);
   const [likesFromUser, setLikesFromUser] = useState([]);

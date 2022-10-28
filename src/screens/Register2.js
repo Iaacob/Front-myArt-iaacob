@@ -12,9 +12,10 @@ import {
 } from "react-native";
 import axios from "axios";
 import Ionicons from "react-native-vector-icons/Ionicons";
+import IP from "../ip";
+
 
 const Register2 = (props) => {
-  const IP = "10.144.1.19";
   const { navigation, route } = props;
   const { username, password, name, lastname } = route.params;
   // const [username, setUsername] = useState([]);

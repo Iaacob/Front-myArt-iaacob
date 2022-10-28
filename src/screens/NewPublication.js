@@ -19,9 +19,10 @@ import UserContext from "../context/UserContext";
 import * as ImagePicker from "expo-image-picker";
 import * as ImageManipulator from "expo-image-manipulator";
 import { useNavigation } from "@react-navigation/native";
+import IP from "../ip";
+
 
 const NewPublication = (props) => {
-  const IP = "10.144.1.19";
   const [name, setName] = useState([]);
   // const [url, setUrl] = useState([]);
   const [description, setDescription] = useState([]);

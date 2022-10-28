@@ -14,10 +14,9 @@ import Ionicons from "react-native-vector-icons/Ionicons";
 import axios from "axios";
 import TokenContext from "../context/AuthContext";
 import UserContext from "../context/UserContext";
-
+import IP from "../ip";
 
 const Comments = (props) => {
-  const IP = "10.144.1.19";
   const { navigation, route } = props;
   const { Id } = route.params;
   const { token } = useContext(TokenContext);
