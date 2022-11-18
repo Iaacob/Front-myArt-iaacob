@@ -275,11 +275,11 @@ const Home = () => {
         <FlatList
           data={allDataPublications}
           key={(item) => item.id}
-          refreshing={refreshing}
-          onRefresh={() => {
-            setRefreshing(true);
-            onRefresh();
-          }}
+          // refreshing={refreshing}
+          // onRefresh={() => {
+          //   setRefreshing(true);
+          //   onRefresh(); 
+          // }}
           renderItem={({ item }) => (
             <>
               <View style={{ flexDirection: "row", padding: "3%" }}>
@@ -452,6 +452,17 @@ const Home = () => {
               >
                 {item.description}
               </Text>
+              <Text
+                style={{
+                  color: "#fff",
+                  marginLeft: "4%",
+                  marginTop: "2%",
+                  fontSize: 16,
+                }}
+              >
+                {item.precio}
+              </Text>
+              
               <Text style={styles.fecha}>Se creó: {item.created_at}</Text>
             </>
           )}

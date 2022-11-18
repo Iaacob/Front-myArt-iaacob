@@ -26,6 +26,9 @@ const NewPublication = (props) => {
   const [name, setName] = useState([]);
   // const [url, setUrl] = useState([]);
   const [description, setDescription] = useState([]);
+
+  const [precio, setPrecio] = useState([]);
+
   const { token } = useContext(TokenContext);
   const { user } = useContext(UserContext);
   const [data, setData] = useState([]);
@@ -46,6 +49,7 @@ const NewPublication = (props) => {
         image: imgurImage,
         fkUser: data.Id,
         description: description,
+        precio: precio
       };
       subirPublicacion(publicacion);
     }
@@ -145,16 +149,16 @@ const NewPublication = (props) => {
       </View>
       <View style={styles.container}>
 
-          <Image
-            style={styles.picturee}
-            source={image ? { uri: `${image}` } : require("../img/fondo2.png")}
-          />
-          <View style={styles.linea}>
-            <Text style={{ marginLeft: 10, color: "#fff" }}>
-              Select a photo ↓
-            </Text>
-            <View style={{ flexDirection: "column-reverse" }}></View>
-          </View>
+        <Image
+          style={styles.picturee}
+          source={image ? { uri: `${image}` } : require("../img/fondo2.png")}
+        />
+        <View style={styles.linea}>
+          <Text style={{ marginLeft: 10, color: "#fff" }}>
+            Select a photo ↓
+          </Text>
+          <View style={{ flexDirection: "column-reverse" }}></View>
+        </View>
       </View>
       <View style={styles.inputContainer}>
         <TextInput
@@ -166,6 +170,11 @@ const NewPublication = (props) => {
           style={styles.input}
           placeholder="Description"
           onChangeText={(value) => setDescription(value)}
+        ></TextInput>
+        <TextInput
+          style={styles.input}
+          placeholder="Precio"
+          onChangeText={(value) => setPrecio(value)}
         ></TextInput>
         <Button
           style={styles.boton}
