@@ -242,6 +242,7 @@ const Home = () => {
 
   console.log(logedUser.Id)
 
+
   return (
     <>
       <StatusBar
@@ -313,15 +314,15 @@ const Home = () => {
                     </Text>
 
 
-                      {
-                        parseInt(item.UserId) == parseInt(logedUser.Id) ? <Button
+                    {
+                      parseInt(item.UserId) == parseInt(logedUser.Id) ? <Button
                         onPress={async () => deletePublication(item.UserId, item.Id)}
                         title="Delete"
                         color="#841584"
                         accessibilityLabel="Learn more about this purple button"
                       /> : <Text>{logedUser.Id} y {item.UserId}</Text>
-                      }
-                    
+                    }
+
 
 
 
@@ -462,7 +463,33 @@ const Home = () => {
               >
                 {item.precio}
               </Text>
-              
+
+              {
+                item.premium == true ? 
+                <Text
+                  style={{
+                    color: "#fff",
+                    marginLeft: "4%",
+                    marginTop: "2%",
+                    fontSize: 16,
+                  }}
+                >
+                  premium: si
+                </Text>
+
+                  : <Text
+                  style={{
+                    color: "#fff",
+                    marginLeft: "4%",
+                    marginTop: "2%",
+                    fontSize: 16,
+                  }}
+                >
+                  premium: no
+                </Text>
+              }
+
+
               <Text style={styles.fecha}>Se creó: {item.created_at}</Text>
             </>
           )}

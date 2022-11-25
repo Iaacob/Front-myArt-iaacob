@@ -10,7 +10,9 @@ import {
   StatusBar,
   TextInput,
   ScrollView,
+  Switch
 } from "react-native";
+import CheckBox from '@react-native-community/checkbox';
 import "../img/ejemplo.jpg";
 import Ionicons from "react-native-vector-icons/Ionicons";
 import axios from "axios";
@@ -28,6 +30,11 @@ const NewPublication = (props) => {
   const [description, setDescription] = useState([]);
 
   const [precio, setPrecio] = useState([]);
+  // const [premium, setPremium] = useState([]);
+  const [premium, setPremium] = useState(false);
+  const toggleSwitch = () => setPremium(previousState => !previousState);
+
+
 
   const { token } = useContext(TokenContext);
   const { user } = useContext(UserContext);
@@ -35,6 +42,7 @@ const NewPublication = (props) => {
   const [publication, setPublication] = useState([]);
   const [image, setImage] = useState(null);
   const [imgurImage, setImgurImage] = useState(null);
+
 
   const navigation = useNavigation();
 
@@ -49,8 +57,10 @@ const NewPublication = (props) => {
         image: imgurImage,
         fkUser: data.Id,
         description: description,
-        precio: precio
+        precio: precio,
+        premium: premium,
       };
+      console.log(publicacion)
       subirPublicacion(publicacion);
     }
   }, [publication, imgurImage]);
@@ -176,6 +186,28 @@ const NewPublication = (props) => {
           placeholder="Precio"
           onChangeText={(value) => setPrecio(value)}
         ></TextInput>
+
+        {/* <Text style={{ marginLeft: 10, color: "#fff" }}>
+          premium:
+        </Text>
+        <TextInput
+          style={styles.input}
+          placeholder="si/no"
+          onChangeText={(value) => setPremium(value)}
+        /> */}
+
+        <Text style={{ marginLeft: 10, color: "#fff" }}>
+          premium:
+        </Text>
+        <Switch
+          trackColor={{ false: "#767577", true: "#81b0ff" }}
+          thumbColor={premium ? "#f5dd4b" : "#f4f3f4"}
+          ios_backgroundColor="#3e3e3e"
+          onValueChange={toggleSwitch}
+          value={premium}
+        />
+
+
         <Button
           style={styles.boton}
           title="Search from gallery"
